@@ -407,3 +407,27 @@ body {
 .view.active {
   display: block;
 }
+
+/* Footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 16px 0;
+  color: #606070;
+  font-size: 13px;
+  border-top: 1px solid #3a3a5a;
+}
+
+.github-link {
+  color: #606070;
+  transition: color 0.15s ease;
+  display: flex;
+  align-items: center;
+}
+
+.github-link:hover {
+  color: #c0c0c0;
+}
