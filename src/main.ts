@@ -198,6 +198,7 @@ function setupEventListeners(): void {
   // Test area events (click mode)
   const testArea = document.getElementById('test-area')!;
   testArea.addEventListener('mousedown', handleClickModePress);
+  testArea.addEventListener('mouseup', handleClickModeRelease);
   testArea.addEventListener('contextmenu', (e) => e.preventDefault());
   
   // Test area events (hold mode)
@@ -240,19 +241,32 @@ function setThreshold(value: number): void {
     `Click the button below. Double-clicks faster than ${value}ms indicate switch failure.`;
 }
 
+// Track which button is currently pressed for click mode
+let clickModeActiveButton: MouseButtonType | null = null;
+
 function handleClickModePress(e: MouseEvent): void {
   const buttonType = getButtonType(e.button);
   if (!buttonType) return;
   
+  // Track the press for this click
+  clickModeActiveButton = buttonType;
+  
+  // Create ripple animation on press
+  createRipple(e.currentTarget as HTMLElement, buttonType);
+}
+
+function handleClickModeRelease(e: MouseEvent): void {
+  const buttonType = getButtonType(e.button);
+  if (!buttonType || buttonType !== clickModeActiveButton) return;
+  
   const now = performance.now();
   const stats = state.stats[buttonType];
-  const timeDiff = now - stats.lastClickTime;
+  const timeDiff = stats.lastClickTime > 0 ? now - stats.lastClickTime : 0;
   
+  // Record this click's completion time
   stats.lastClickTime = now;
   stats.clicks++;
-  
-  // Create ripple animation
-  createRipple(e.currentTarget as HTMLElement, buttonType);
+  clickModeActiveButton = null;
   
   // Track fastest (only after first click)
   if (stats.clicks > 1 && timeDiff > 0) {
@@ -261,12 +275,16 @@ function handleClickModePress(e: MouseEvent): void {
     }
   }
   
-  // Check for fault
+  // Check for fault (suspiciously fast double-click)
   if (timeDiff < state.threshold && timeDiff > 0 && stats.clicks > 1) {
     stats.faults++;
     elements.statusLabel.className = 'status fault';
     elements.statusLabel.textContent = 
       `⚠ FAULT DETECTED! ${getButtonName(buttonType)} double-click in ${timeDiff.toFixed(1)}ms`;
+  } else if (stats.clicks === 1) {
+    elements.statusLabel.className = 'status ok';
+    elements.statusLabel.textContent = 
+      `${getButtonName(buttonType)} click registered`;
   } else {
     elements.statusLabel.className = 'status ok';
     elements.statusLabel.textContent = 
