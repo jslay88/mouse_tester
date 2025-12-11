@@ -4,7 +4,7 @@ A web-based diagnostic tool to test mouse switches for common hardware failures:
 - **Inadvertent double-clicks** (switch bounce/chatter)
 - **Hold release issues** (switch not maintaining contact)
 
-🌐 **[Try it online](https://yourusername.github.io/mouse-switch-tester/)**
+🌐 **[Try it online](https://ismymousebroken.com)**
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.0-purple.svg)
@@ -23,22 +23,22 @@ A web-based diagnostic tool to test mouse switches for common hardware failures:
 
 ### Online
 
-Visit the [live demo](https://yourusername.github.io/mouse-switch-tester/) — no installation required.
+Visit [ismymousebroken.com](https://ismymousebroken.com) — no installation required.
 
 ### Local Development
 
 ```bash
 # Install dependencies
-npm install
+yarn install
 
 # Start development server
-npm run dev
+yarn dev
 
 # Build for production
-npm run build
+yarn build
 
 # Preview production build
-npm run preview
+yarn preview
 ```
 
 ## Deployment
@@ -47,14 +47,14 @@ npm run preview
 
 ```bash
 # Build and deploy to gh-pages branch
-npm run deploy
+yarn deploy
 ```
 
 Or set up GitHub Actions for automatic deployment on push.
 
 ### Other Platforms
 
-The `dist/` folder after `npm run build` contains static files that can be hosted anywhere:
+The `dist/` folder after `yarn build` contains static files that can be hosted anywhere:
 - Netlify
 - Vercel
 - Cloudflare Pages
