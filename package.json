@@ -1,0 +1,24 @@
+{
+  "name": "mouse-switch-tester",
+  "version": "1.0.0",
+  "description": "A diagnostic tool to test mouse switches for double-click faults and hold issues",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "deploy": "yarn build && gh-pages -d dist"
+  },
+  "keywords": [
+    "mouse",
+    "testing",
+    "hardware",
+    "diagnostics"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "typescript": "^5.3.0",
+    "vite": "^5.0.0",
+    "gh-pages": "^6.1.0"
+  }
+}
