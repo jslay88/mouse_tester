@@ -41,7 +41,13 @@ function render(): void {
   const app = document.getElementById('app')!;
   
   app.innerHTML = `
-    <!-- Header -->
+    <!-- Site Header -->
+    <div class="site-header">
+      <h1 class="site-title">ismymousebroken.com</h1>
+      <p class="site-tagline">Spoiler: It probably is. Let's find out together.</p>
+    </div>
+    
+    <!-- Mode Selector -->
     <div class="header">
       <span class="mode-label">Mode:</span>
       <button class="mode-btn active" id="click-mode-btn">Click Test</button>
