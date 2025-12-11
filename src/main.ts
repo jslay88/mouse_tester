@@ -129,6 +129,8 @@ function render(): void {
         • Click different areas of each button to check all contact points<br>
         • Hold button, move finger around — no extra clicks should register<br>
         • Slowly release pressure while holding — watch for false clicks<br>
+        • Keep an eye on the click count — watch for more than one click registering<br>
+        • Make slow, deliberate clicks with increased threshold — wait long enough between clicks<br>
         • Click the ? button for detailed testing instructions
       </div>
     </div>
